@@ -1,14 +1,12 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
 
 android {
     namespace 'com.adskipper.app'
-    compileSdk 34
+    compileSdkVersion 34
     defaultConfig {
         applicationId "com.adskipper.app"
-        minSdk 24
-        targetSdk 34
+        minSdkVersion 24
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
     }
