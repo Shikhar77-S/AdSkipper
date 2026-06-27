@@ -9,14 +9,14 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Install Android SDK
+      - name: Setup Android SDK
         uses: android-actions/setup-android@v3
       - name: Create gradlew
         run: |
-          gradle wrapper --gradle-version 8.7 --distribution-type bin
+          gradle wrapper --gradle-version 8.7
           chmod +x gradlew
       - name: Build APK
-        run: ./gradlew assembleDebug --warning-mode none
+        run: ./gradlew assembleDebug
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
