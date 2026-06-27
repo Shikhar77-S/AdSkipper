@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:background="#1a1a2e">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Ad Skipper" android:textSize="32sp" android:textColor="#ffffff"
+        android:textStyle="bold" android:layout_marginBottom="48dp"/>
+    <TextView android:id="@+id/status_text" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="Status check ho raha hai..."
+        android:textSize="16sp" android:textColor="#ffffff" android:gravity="center"
+        android:padding="24dp" android:background="#16213e" android:layout_marginBottom="32dp"/>
+    <Button android:id="@+id/enable_btn" android:layout_width="match_parent"
+        android:layout_height="56dp" android:text="Enable Karein"
+        android:textSize="18sp" android:backgroundTint="#e94560" android:textColor="#ffffff"/>
+</LinearLayout>
