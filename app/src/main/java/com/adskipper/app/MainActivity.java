@@ -12,6 +12,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private TextView statusText;
     private Button enableBtn;
+    private boolean isReturningFromSettings = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,24 +20,30 @@ public class MainActivity extends AppCompatActivity {
         statusText = findViewById(R.id.status_text);
         enableBtn = findViewById(R.id.enable_btn);
         enableBtn.setOnClickListener(v -> {
+            isReturningFromSettings = true;
             Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
             startActivity(intent);
-            Toast.makeText(this, "Ad Skipper ko Enable Karen!", Toast.LENGTH_LONG).show();
         });
     }
     @Override
     protected void onResume() {
         super.onResume();
         updateStatus();
+        // Accessibility ON है और user settings से वापस आया है तो app बंद करो
+        if (isReturningFromSettings && isAccessibilityServiceEnabled()) {
+            isReturningFromSettings = false;
+            Toast.makeText(this, "✅ Ad Skipper चालू! Ab ads skip honge!", Toast.LENGTH_LONG).show();
+            finishAffinity(); // App बंद हो जाएगी background में चलती रहेगी
+        }
     }
     private void updateStatus() {
         if (isAccessibilityServiceEnabled()) {
-            statusText.setText("✅ Ad Skipper Chalu Hai!\nYouTube ads skip honge!");
-            enableBtn.setText("✅ Service Chalu Hai");
+            statusText.setText("✅ Ad Skipper Chalu Hai!\nYouTube ads automatically skip honge!\nPhone lock hone par bhi!");
+            enableBtn.setText("✅ Chalu Hai - Sab Theek Hai");
             enableBtn.setEnabled(false);
         } else {
-            statusText.setText("❌ Service Band Hai.\nEnable Karen.");
-            enableBtn.setText("Enable Karen");
+            statusText.setText("❌ Service Band Hai.\nNeeche button dabake Enable Karen.");
+            enableBtn.setText("🔧 Enable Karen");
             enableBtn.setEnabled(true);
         }
     }
