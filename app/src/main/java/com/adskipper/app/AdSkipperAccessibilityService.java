@@ -9,10 +9,8 @@ import android.os.Looper;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.content.Context;
-import android.util.Log;
 import java.util.List;
 public class AdSkipperAccessibilityService extends AccessibilityService {
-    private static final String TAG = "AdSkipper";
     private PowerManager.WakeLock wakeLock;
     private Handler handler = new Handler(Looper.getMainLooper());
     private static final String[] SKIP_TEXTS = {"Skip Ad","Skip Ads","Skip ad","skip ad","विज्ञापन छोड़ें","छोड़ें","SKIP","Skip","skip"};
@@ -67,5 +65,9 @@ public class AdSkipperAccessibilityService extends AccessibilityService {
         dispatchGesture(gesture, null, null);
     }
     @Override public void onInterrupt() {}
-    @Override public void onDestroy() { super.onDestroy(); if (wakeLock != null && wakeLock.isHeld()) wakeLock.release(); handler.removeCallbacksAndMessages(null); }
+    @Override public void onDestroy() {
+        super.onDestroy();
+        if (wakeLock != null && wakeLock.isHeld()) wakeLock.release();
+        handler.removeCallbacksAndMessages(null);
+    }
 }
