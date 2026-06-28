@@ -1,7 +1,6 @@
 package com.adskipper.app;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.accessibility.AccessibilityManager;
@@ -24,11 +23,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             Toast.makeText(this, "Ad Skipper ko Enable Karen!", Toast.LENGTH_LONG).show();
         });
-        if (!Settings.canDrawOverlays(this)) {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                Uri.parse("package:" + getPackageName()));
-            startActivity(intent);
-        }
     }
     @Override
     protected void onResume() {
@@ -37,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
     }
     private void updateStatus() {
         if (isAccessibilityServiceEnabled()) {
-            statusText.setText("Ad Skipper Chalu Hai! YouTube ads skip honge!");
-            enableBtn.setText("Service Chalu Hai");
+            statusText.setText("✅ Ad Skipper Chalu Hai!\nYouTube ads skip honge!");
+            enableBtn.setText("✅ Service Chalu Hai");
             enableBtn.setEnabled(false);
         } else {
-            statusText.setText("Service Band Hai. Enable Karen.");
+            statusText.setText("❌ Service Band Hai.\nEnable Karen.");
             enableBtn.setText("Enable Karen");
             enableBtn.setEnabled(true);
         }
